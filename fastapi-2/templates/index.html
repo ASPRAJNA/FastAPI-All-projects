@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FastAPI-MongoDB</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="javascript:void(0)">INote</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">Link</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Search" />
+            <button class="btn btn-success" type="button">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+    <div class="container">
+      <br />
+      <h2>Add your Notes Here</h2>
+      <form action="/add" method="post">
+        <div class="mb-3">
+          <label for="titleex" class="form-label">Title of notes</label>
+          <input type="text" class="form-control" id="titleex" name="title" />
+        </div>
+        <div class="mb-3">
+          <label for="descpex" class="form-label">Description of notes</label>
+          <textarea
+            name="note"
+            class="form-control"
+            id="descpex"
+            rows="4"
+            style="resize: none"
+          ></textarea>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+    <br />
+    <div class="container">
+      <hr />
+
+      <h3>All notes</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {% for doc in docs %}
+          <tr>
+            <td class="c4"><span>1</span></td>
+            <td class="c4"><span>{{doc.title}}</span></td>
+            <td class="c5"><span>{{doc.note}}</span></td>
+            <td class="c4"><span>delete,update,view</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
